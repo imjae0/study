@@ -24,7 +24,6 @@ while True:
     # 예측하기
     prediction = model.predict(img)
     
-
     # 결과 출력하기
     if prediction < 0.5:
         class_name = "burn"
