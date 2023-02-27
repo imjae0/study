@@ -14,7 +14,6 @@ cap = cv2.VideoCapture(0)
 while True:
     # 프레임 읽어오기
     ret, frame = cap.read()
-    result=[]   
 
     # 이미지 전처리하기
     img = cv2.resize(frame, (128, 128))
@@ -24,7 +23,7 @@ while True:
 
     # 예측하기
     prediction = model.predict(img)
-    pre = np.round(prediction,1)[0]
+    
 
     # 결과 출력하기
     if prediction < 0.5:
@@ -32,8 +31,9 @@ while True:
     if prediction >= 0.5:
         class_name = "wound"
 
+    # class_name과 prediction 동시 출력
+    result=[]
     result.append([class_name, pre[0]])
-
     cv2.putText(frame, str(result[0]), (50, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
 
     # 화면에 출력하기
